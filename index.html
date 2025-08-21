@@ -2,239 +2,239 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>UltraTV - A TV que cabe no seu bolso</title>
+  <title>UltraTV - IPTV Premium</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;800&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3, h4 { font-family: 'Montserrat', sans-serif; }
-    .pulse { animation: pulse 2s infinite; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .video-background {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      object-fit: cover;
+    }
+    .pulse {
+      animation: pulse 2s infinite;
+    }
     @keyframes pulse {
       0% { transform: scale(1); opacity: 1; }
       50% { transform: scale(1.05); opacity: 0.8; }
       100% { transform: scale(1); opacity: 1; }
     }
+    /* Estilo dos popups flutuantes */
     .popup {
       position: fixed;
       bottom: 20px;
       left: 20px;
-      background: #fff;
-      color: #000;
+      background: white;
+      color: black;
       padding: 12px 16px;
       border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      box-shadow: 0px 4px 15px rgba(0,0,0,0.3);
       display: flex;
       align-items: center;
       gap: 10px;
       opacity: 0;
-      transform: translateY(50px);
+      transform: translateY(20px);
       transition: all 0.5s ease;
-      z-index: 50;
+      z-index: 9999;
     }
-    .popup.show { opacity: 1; transform: translateY(0); }
-    .popup img { width: 40px; height: 40px; border-radius: 50%; }
+    .popup.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .popup img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
   </style>
 </head>
 <body class="bg-gray-900 text-white">
 
-<!-- HERO -->
-<section class="relative h-screen flex items-center justify-center text-center text-white px-4 pt-20">
-  <video id="heroVideo" autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-50">
+  <!-- Vídeo de fundo -->
+  <video autoplay muted loop playsinline class="video-background">
+    <source src="fundo.webm" type="video/webm">
     <source src="fundo.mp4" type="video/mp4">
     Seu navegador não suporta vídeos em HTML5.
   </video>
 
-  <div class="relative z-10 max-w-3xl">
-    <h1 class="text-5xl md:text-6xl font-bold mb-6 text-cyan-400">UltraTV: O Entretenimento que você procura</h1>
-    <p class="text-xl md:text-2xl mb-8 text-yellow-300">Mais de 1000 canais, filmes, séries e futebol em HD/4K. Sem fidelidade, sem SPC — só pagar e usar!</p>
-    <a href="https://wa.me/5521987713642" target="_blank"
-       class="pulse px-10 py-5 bg-green-400 hover:bg-green-500 rounded-full text-2xl font-bold shadow-lg">
-      📲 Quero Testar Agora
+  <!-- Hero -->
+  <section class="flex flex-col items-center justify-center text-center h-screen bg-black bg-opacity-60 p-6">
+    <h1 class="text-5xl font-bold mb-4">UltraTV – O entretenimento que você procura</h1>
+    <p class="text-xl mb-6">Filmes, séries, futebol ao vivo e muito mais — sem limites.</p>
+    <a href="https://wa.me/5521987713642" class="bg-green-600 hover:bg-green-700 text-white text-xl px-8 py-4 rounded-full pulse font-bold">
+      📲 Testar Agora no WhatsApp
     </a>
+  </section>
+
+  <!-- Seção sobre -->
+  <section class="bg-gray-950 py-16 px-6 text-center">
+    <h2 class="text-4xl font-bold mb-6">Por que escolher a <span class="text-yellow-400">UltraTV</span>?</h2>
+    <p class="max-w-3xl mx-auto text-lg">
+      Com a <strong>UltraTV</strong>, você tem acesso a milhares de canais ao vivo, filmes e séries em qualidade HD/4K. 
+      Sem fidelidade, sem consulta ao SPC — <b>é só pagar e usar</b>. 
+      Segurança garantida e suporte rápido pelo WhatsApp.
+    </p>
+  </section>
+
+  <!-- Planos -->
+  <section class="bg-gray-800 py-20 px-6 text-center">
+    <h2 class="text-4xl font-bold mb-10">Escolha o seu plano</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+
+      <!-- Plano Anual -->
+      <div id="plano-anual" class="plan-card border-4 border-green-500 rounded-2xl p-8 cursor-pointer bg-gray-900">
+        <h3 class="text-2xl font-bold">Plano Anual</h3>
+        <p class="text-3xl font-bold text-green-400">R$20/mês</p>
+        <p class="text-sm">Pagamento único de R$240</p>
+        <span class="mt-3 inline-block bg-green-500 text-white px-3 py-1 rounded-full text-xs">🔥 Melhor custo-benefício</span>
+      </div>
+
+      <!-- Plano Trimestral -->
+      <div id="plano-trimestral" class="plan-card border-2 border-gray-700 rounded-2xl p-8 cursor-pointer bg-gray-900">
+        <h3 class="text-2xl font-bold">Plano Trimestral</h3>
+        <p class="text-3xl font-bold text-yellow-400">R$25/mês</p>
+        <p class="text-sm">Pagamento de R$75 a cada 3 meses</p>
+      </div>
+
+      <!-- Plano Mensal -->
+      <div id="plano-mensal" class="plan-card border-2 border-gray-700 rounded-2xl p-8 cursor-pointer bg-gray-900">
+        <h3 class="text-2xl font-bold">Plano Mensal</h3>
+        <p class="text-3xl font-bold text-red-400">R$29/mês</p>
+        <p class="text-sm">Renovação automática</p>
+      </div>
+    </div>
+
+    <button id="btnContinuar" class="mt-10 px-6 py-4 bg-green-500 hover:bg-green-600 rounded-xl font-bold text-white text-lg">
+      Continuar
+    </button>
+  </section>
+
+  <!-- Modal -->
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center">
+    <div class="bg-white text-black p-8 rounded-2xl max-w-md w-full text-center">
+      <h2 class="text-xl font-bold mb-4">⚠️ Tem certeza?</h2>
+      <p id="modalMensagem" class="mb-6"></p>
+      <div class="flex justify-center gap-4">
+        <button id="btnVoltarAnual" class="px-4 py-2 bg-green-500 text-white rounded-lg">
+          Quero economizar, vou de Anual
+        </button>
+        <button id="btnConfirmar" class="px-4 py-2 bg-gray-400 text-black rounded-lg">
+          Manter escolha
+        </button>
+      </div>
+    </div>
   </div>
-</section>
 
-<!-- SOBRE IPTV -->
-<section class="py-16 px-6 text-center max-w-4xl mx-auto">
-  <h2 class="text-4xl font-bold text-cyan-400 mb-6">O que é IPTV?</h2>
-  <p class="text-lg text-gray-200 leading-relaxed">
-    UltraTV é a forma moderna de assistir TV pela internet. Você tem acesso a <b>filmes, séries, esportes e canais ao vivo</b> direto no seu celular, Smart TV ou computador. 
-    Não tem fidelidade, nem consulta ao SPC. É simples: <b>pagou, usou</b>. Sem enrolação, sem dor de cabeça.
-  </p>
-</section>
+  <!-- Convite para trabalhar -->
+  <section class="bg-gray-950 py-20 px-6 text-center">
+    <h2 class="text-4xl font-bold mb-6">💼 Trabalhe Conosco</h2>
+    <p class="max-w-2xl mx-auto text-lg">
+      Quer ganhar dinheiro na internet oferecendo entretenimento de qualidade?  
+      Torne-se parceiro da <strong>UltraTV</strong> e receba comissão a cada venda realizada.
+    </p>
+    <a href="https://wa.me/5521987713642" class="mt-6 inline-block bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-8 py-4 rounded-full">
+      🚀 Quero ser parceiro
+    </a>
+  </section>
 
-<!-- PLANOS -->
-<section id="planos" class="py-16 px-6 bg-gray-800 text-center">
-  <h2 class="text-4xl font-bold text-yellow-400 mb-10">Escolha seu Plano</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+  <!-- Rodapé -->
+  <footer class="bg-black py-10 text-center">
+    <p class="text-lg mb-4">📌 UltraTV - Sua central de entretenimento online</p>
+    <p class="text-sm mb-4">Sem fidelidade, sem consulta ao SPC. Apenas pagar e usar.</p>
+    <a href="https://wa.me/5521987713642" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-full font-bold">
+      💬 Falar no WhatsApp
+    </a>
+    <p class="text-xs mt-4">🔒 Pagamento 100% seguro via PIX</p>
+  </footer>
 
-    <!-- Plano Anual -->
-    <div id="plano-anual" class="plan-card border-4 border-green-500 rounded-2xl p-8 cursor-pointer bg-gray-900">
-      <h3 class="text-2xl font-bold">Plano Anual</h3>
-      <p class="text-3xl font-bold text-green-400">R$20/mês</p>
-      <p class="text-lg">Pagamento único de R$240</p>
-      <span class="mt-4 inline-block bg-green-500 text-white px-4 py-2 rounded-full text-sm">🔥 Melhor custo-benefício</span>
-    </div>
-
-    <!-- Plano Trimestral -->
-    <div id="plano-trimestral" class="plan-card border-2 border-gray-600 rounded-2xl p-8 cursor-pointer bg-gray-900">
-      <h3 class="text-2xl font-bold">Plano Trimestral</h3>
-      <p class="text-3xl font-bold text-yellow-400">R$25/mês</p>
-      <p class="text-lg">Pagamento de R$75 a cada 3 meses</p>
-    </div>
-
-    <!-- Plano Mensal -->
-    <div id="plano-mensal" class="plan-card border-2 border-gray-600 rounded-2xl p-8 cursor-pointer bg-gray-900">
-      <h3 class="text-2xl font-bold">Plano Mensal</h3>
-      <p class="text-3xl font-bold text-red-400">R$29/mês</p>
-      <p class="text-lg">Renovação automática</p>
-    </div>
-  </div>
-
-  <!-- Botão Continuar -->
-  <button id="btnContinuar" class="mt-10 px-8 py-4 bg-green-500 hover:bg-green-600 rounded-xl font-bold text-xl">
-    Continuar
-  </button>
-</section>
-
-<!-- BENEFÍCIOS -->
-<section class="py-16 px-6 text-center max-w-5xl mx-auto">
-  <h2 class="text-4xl font-bold text-cyan-400 mb-10">Por que escolher a UltraTV?</h2>
-  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+  <!-- Popups flutuantes -->
+  <div id="popup" class="popup">
+    <img src="https://i.pravatar.cc/100?img=12" alt="Cliente">
     <div>
-      <p class="text-6xl mb-4">📺</p>
-      <h3 class="text-xl font-bold">Variedade total</h3>
-      <p>Filmes, séries e esportes em um só lugar.</p>
-    </div>
-    <div>
-      <p class="text-6xl mb-4">⚡</p>
-      <h3 class="text-xl font-bold">Qualidade HD/4K</h3>
-      <p>Sem travar, imagem nítida e estável.</p>
-    </div>
-    <div>
-      <p class="text-6xl mb-4">💸</p>
-      <h3 class="text-xl font-bold">Preço justo</h3>
-      <p>Menos que uma pizza por mês.</p>
+      <p class="text-sm"><b>Maria (RJ)</b> acabou de assinar o Plano Anual 🎉</p>
     </div>
   </div>
-</section>
 
-<!-- PARCERIA -->
-<section class="py-16 px-6 text-center bg-gray-800">
-  <h2 class="text-4xl font-bold text-yellow-400 mb-6">💼 Trabalhe conosco</h2>
-  <p class="text-lg text-gray-200 max-w-3xl mx-auto">
-    Seja um parceiro da UltraTV e <b>ganhe dinheiro na internet</b>.  
-    Você pode revender nossos planos e aumentar sua renda mensal sem complicação.
-  </p>
-  <a href="https://wa.me/5521987713642" target="_blank" class="mt-6 inline-block bg-green-500 hover:bg-green-600 px-8 py-4 rounded-xl font-bold text-xl">
-    🚀 Quero ser parceiro
-  </a>
-</section>
+  <script>
+    let planoSelecionado = "anual";
 
-<!-- RODAPÉ -->
-<footer class="py-10 text-center bg-black">
-  <p class="mb-4">© 2025 UltraTV - Todos os direitos reservados.</p>
-  <p class="mb-4">Pagamento 100% seguro via PIX. Sem fidelidade, sem consulta ao SPC.</p>
-  <a href="https://wa.me/5521987713642" target="_blank"
-     class="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white px-6 py-4 rounded-full shadow-lg text-lg font-bold">
-    💬 WhatsApp
-  </a>
-</footer>
+    const planos = {
+      anual: document.getElementById("plano-anual"),
+      trimestral: document.getElementById("plano-trimestral"),
+      mensal: document.getElementById("plano-mensal"),
+    };
 
-<!-- MODAL de aviso planos -->
-<div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center">
-  <div class="bg-white text-black p-8 rounded-2xl max-w-md w-full text-center">
-    <h2 class="text-xl font-bold mb-4">⚠️ Tem certeza?</h2>
-    <p id="modalMensagem" class="mb-6"></p>
-    <div class="flex justify-center gap-4">
-      <button id="btnVoltarAnual" class="px-4 py-2 bg-green-500 text-white rounded-lg">
-        Quero economizar, vou de Anual
-      </button>
-      <button id="btnConfirmar" class="px-4 py-2 bg-gray-400 text-black rounded-lg">
-        Manter escolha
-      </button>
-    </div>
-  </div>
-</div>
+    const modal = document.getElementById("modal");
+    const modalMensagem = document.getElementById("modalMensagem");
+    const btnVoltarAnual = document.getElementById("btnVoltarAnual");
+    const btnConfirmar = document.getElementById("btnConfirmar");
 
-<!-- POPUPS de depoimentos -->
-<div id="popup" class="popup">
-  <img src="https://randomuser.me/api/portraits/women/65.jpg" alt="cliente">
-  <div>
-    <p class="text-sm"><b>Maria</b> acabou de assinar o plano anual 🎉</p>
-    <p class="text-xs text-gray-600">Há poucos segundos</p>
-  </div>
-</div>
+    // Selecionar plano
+    function selecionarPlano(plano) {
+      planoSelecionado = plano;
+      for (const key in planos) {
+        planos[key].classList.remove("border-4", "border-green-500");
+        planos[key].classList.add("border-2", "border-gray-700");
+      }
+      planos[plano].classList.add("border-4", "border-green-500");
 
-<script>
-  // VIDEO SOM
-  const video = document.getElementById("heroVideo");
-  function habilitarSom() {
-    video.muted = false;
-    video.play();
-    document.removeEventListener("click", habilitarSom);
-  }
-  document.addEventListener("click", habilitarSom);
-
-  // PLANOS
-  let planoSelecionado = "anual";
-  const planos = {
-    anual: document.getElementById("plano-anual"),
-    trimestral: document.getElementById("plano-trimestral"),
-    mensal: document.getElementById("plano-mensal"),
-  };
-  const modal = document.getElementById("modal");
-  const modalMensagem = document.getElementById("modalMensagem");
-  const btnVoltarAnual = document.getElementById("btnVoltarAnual");
-  const btnConfirmar = document.getElementById("btnConfirmar");
-
-  function selecionarPlano(plano) {
-    planoSelecionado = plano;
-    for (const key in planos) {
-      planos[key].classList.remove("border-4", "border-green-500");
-      planos[key].classList.add("border-2", "border-gray-600");
+      if (plano !== "anual") {
+        abrirModal(plano);
+      }
     }
-    planos[plano].classList.add("border-4", "border-green-500");
-    if (plano !== "anual") abrirModal(plano);
-  }
 
-  function abrirModal(plano) {
-    if (plano === "trimestral") {
-      modalMensagem.innerHTML = "No Anual você pagaria <b>R$20/mês</b>, economizando <b>R$60 por ano</b> em comparação ao Trimestral. Além disso, mais segurança e praticidade!";
-    } else if (plano === "mensal") {
-      modalMensagem.innerHTML = "No Anual você pagaria <b>R$20/mês</b>, economizando <b>R$108 por ano</b> em comparação ao Mensal. Além disso, mais segurança e praticidade!";
+    function abrirModal(plano) {
+      if (plano === "trimestral") {
+        modalMensagem.innerHTML = "No Anual você pagaria <b>R$20/mês</b>, economizando <b>R$60 por ano</b> em comparação ao Trimestral. Além disso, mais segurança e praticidade.";
+      } else if (plano === "mensal") {
+        modalMensagem.innerHTML = "No Anual você pagaria <b>R$20/mês</b>, economizando <b>R$108 por ano</b> em comparação ao Mensal. Além disso, mais segurança e praticidade.";
+      }
+      modal.classList.remove("hidden");
     }
-    modal.classList.remove("hidden");
-  }
 
-  planos.anual.addEventListener("click", () => selecionarPlano("anual"));
-  planos.trimestral.addEventListener("click", () => selecionarPlano("trimestral"));
-  planos.mensal.addEventListener("click", () => selecionarPlano("mensal"));
-  btnVoltarAnual.addEventListener("click", () => { selecionarPlano("anual"); modal.classList.add("hidden"); });
-  btnConfirmar.addEventListener("click", () => modal.classList.add("hidden"));
-  document.getElementById("btnContinuar").addEventListener("click", () => {
-    alert("Plano selecionado: " + planoSelecionado.toUpperCase());
-  });
+    planos.anual.addEventListener("click", () => selecionarPlano("anual"));
+    planos.trimestral.addEventListener("click", () => selecionarPlano("trimestral"));
+    planos.mensal.addEventListener("click", () => selecionarPlano("mensal"));
 
-  // POPUP DEPOIMENTOS
-  const popup = document.getElementById("popup");
-  const depoimentos = [
-    {nome:"Maria",foto:"https://randomuser.me/api/portraits/women/65.jpg",texto:"acabou de assinar o plano anual 🎉"},
-    {nome:"Carlos",foto:"https://randomuser.me/api/portraits/men/32.jpg",texto:"garantiu 12 meses de UltraTV 😍"},
-    {nome:"Fernanda",foto:"https://randomuser.me/api/portraits/women/44.jpg",texto:"assinou agora mesmo 🔥"},
-    {nome:"João",foto:"https://randomuser.me/api/portraits/men/76.jpg",texto:"virou cliente UltraTV 👏"}
-  ];
-  let i=0;
-  setInterval(()=>{
-    const d=depoimentos[i];
-    popup.querySelector("img").src=d.foto;
-    popup.querySelector("b").innerText=d.nome;
-    popup.querySelector("p").innerHTML="<b>"+d.nome+"</b> "+d.texto;
-    popup.classList.add("show");
-    setTimeout(()=>popup.classList.remove("show"),8000);
-    i=(i+1)%depoimentos.length;
-  },30000); // 30s
-</script>
+    btnVoltarAnual.addEventListener("click", () => {
+      selecionarPlano("anual");
+      modal.classList.add("hidden");
+    });
+
+    btnConfirmar.addEventListener("click", () => {
+      modal.classList.add("hidden");
+    });
+
+    document.getElementById("btnContinuar").addEventListener("click", () => {
+      alert("Plano selecionado: " + planoSelecionado.toUpperCase());
+    });
+
+    // Popups recorrentes
+    const popup = document.getElementById("popup");
+    const mensagens = [
+      { nome: "Carlos (SP)", msg: "assinou o Plano Trimestral ✅", img: "https://i.pravatar.cc/100?img=32" },
+      { nome: "Ana (MG)", msg: "assinou o Plano Anual 🎉", img: "https://i.pravatar.cc/100?img=45" },
+      { nome: "João (BA)", msg: "acabou de fechar o Plano Mensal 🔥", img: "https://i.pravatar.cc/100?img=17" },
+      { nome: "Paula (DF)", msg: "migrou para o Plano Anual e economizou 💰", img: "https://i.pravatar.cc/100?img=29" }
+    ];
+
+    let i = 0;
+    setInterval(() => {
+      const cliente = mensagens[i % mensagens.length];
+      popup.querySelector("img").src = cliente.img;
+      popup.querySelector("p").innerHTML = "<b>" + cliente.nome + "</b> " + cliente.msg;
+      popup.classList.add("show");
+      setTimeout(() => popup.classList.remove("show"), 6000);
+      i++;
+    }, 30000);
+  </script>
 </body>
 </html>
 
