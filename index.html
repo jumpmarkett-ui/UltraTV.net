@@ -2,103 +2,199 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>UltraTV - IPTV Premium</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UltraTV - Sua IPTV Premium</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Inter', sans-serif; }
-    h1, h2, h3 { font-family: 'Montserrat', sans-serif; }
-    .pulse { animation: pulse 2s infinite; }
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
+    .highlight { border: 3px solid gold; transform: scale(1.05); }
+    .popup {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: white;
+      color: black;
+      padding: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      display: none;
+      align-items: center;
+      gap: 10px;
+      animation: fadeIn 0.5s;
+      z-index: 50;
     }
+    .popup img { width: 40px; height: 40px; border-radius: 50%; }
+    @keyframes fadeIn { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0);} }
   </style>
 </head>
-<body class="bg-black text-white relative">
+<body class="bg-blue-100 text-gray-900">
 
-  <!-- Hero -->
-  <section class="relative h-screen flex flex-col items-center justify-center text-center px-6">
-    <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-cover opacity-40">
+  <!-- HERO com vídeo -->
+  <section class="relative w-full h-screen overflow-hidden">
+    <video autoplay loop muted playsinline id="bgVideo" class="absolute w-full h-full object-cover">
       <source src="fundo.webm" type="video/webm">
       Seu navegador não suporta vídeos em HTML5.
     </video>
-    <div class="relative z-10 max-w-2xl">
-      <h1 class="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 leading-tight">O entretenimento que você procura, em um só lugar.</h1>
-      <p class="text-2xl sm:text-3xl md:text-4xl mb-8">Filmes, séries, futebol ao vivo e muito mais — sem limites.</p>
-      <a href="https://wa.me/5521987713642" class="pulse inline-block bg-green-700 hover:bg-green-800 text-white text-2xl sm:text-3xl font-bold px-10 py-5 rounded-full w-full">
-        📲 Testar Agora no WhatsApp
-      </a>
+    <button id="toggleSound" class="absolute bottom-6 right-6 bg-blue-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-blue-700 transition">🔊 Ativar Som</button>
+    <div class="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4 bg-black/50">
+      <h1 class="text-4xl md:text-6xl font-bold mb-4">UltraTV – O entretenimento que você procura</h1>
+      <p class="text-lg md:text-2xl mb-6">Filmes, séries, futebol ao vivo e muito mais — sem limites.</p>
+      <a href="https://wa.me/5521987713642?text=Olá,%20quero%20testar%20a%20UltraTV" target="_blank" class="bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-3 rounded-full text-lg shadow-lg">📲 Testar Agora no WhatsApp</a>
     </div>
+  </section>
+
+  <!-- Explicação IPTV -->
+  <section class="py-16 px-6 max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">📖 Como funciona a UltraTV?</h2>
+    <p class="text-lg mb-4">
+      A <span class="font-bold">UltraTV</span> é sua nova forma de assistir TV online. São mais de 1000 canais ao vivo, filmes, séries e esportes em qualidade HD e 4K.
+    </p>
+    <p class="text-lg mb-4">
+      ✅ Sem fidelidade, sem consulta SPC/Serasa. Basta pagar e começar a usar na hora.
+    </p>
+    <p class="text-lg">Disponível em Smart TVs, celulares, computadores e TV Box.</p>
   </section>
 
   <!-- Planos -->
-  <section class="py-16 px-6 bg-black text-center">
-    <h2 class="text-4xl sm:text-5xl font-bold mb-10">Escolha seu Plano</h2>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-      <!-- Anual -->
-      <div id="plano-anual" class="plan-card border-4 border-green-500 rounded-2xl p-10 cursor-pointer bg-gray-900">
-        <h3 class="text-3xl sm:text-4xl font-bold mb-4">Plano Anual</h3>
-        <p class="text-4xl sm:text-5xl font-bold text-green-400">R$20/mês</p>
-        <p class="text-2xl sm:text-3xl">Pagamento único de R$240</p>
-        <span class="mt-6 inline-block bg-green-500 text-white px-4 py-2 rounded-full text-xl">🔥 Melhor custo-benefício</span>
+  <section class="py-16 px-6 bg-blue-300">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">💳 Escolha seu plano</h2>
+    <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+      <div id="plano-mensal" class="bg-white rounded-2xl shadow-lg p-8 text-center cursor-pointer">
+        <h3 class="text-2xl font-bold mb-4">Plano Mensal</h3>
+        <p class="text-4xl font-bold mb-2 text-red-500">R$29/mês</p>
+        <p class="text-sm mb-6">Renovação automática</p>
       </div>
-
-      <!-- Trimestral -->
-      <div id="plano-trimestral" class="plan-card border-2 border-gray-700 rounded-2xl p-10 cursor-pointer bg-gray-900">
-        <h3 class="text-3xl sm:text-4xl font-bold mb-4">Plano Trimestral</h3>
-        <p class="text-4xl sm:text-5xl font-bold text-yellow-400">R$25/mês</p>
-        <p class="text-2xl sm:text-3xl">Pagamento de R$75 a cada 3 meses</p>
+      <div id="plano-anual" class="bg-white rounded-2xl shadow-lg p-8 text-center highlight relative cursor-pointer">
+        <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gold text-black px-4 py-1 rounded-full font-bold shadow">🔥 Melhor opção</span>
+        <h3 class="text-2xl font-bold mb-4">Plano Anual</h3>
+        <p class="text-4xl font-bold mb-2 text-green-500">R$20/mês</p>
+        <p class="text-sm mb-2">Pagamento único de R$240</p>
+        <span class="inline-block mt-2 bg-green-500 text-white px-3 py-1 rounded-full text-xs">🔥 Melhor custo-benefício</span>
       </div>
-
-      <!-- Mensal -->
-      <div id="plano-mensal" class="plan-card border-2 border-gray-700 rounded-2xl p-10 cursor-pointer bg-gray-900">
-        <h3 class="text-3xl sm:text-4xl font-bold mb-4">Plano Mensal</h3>
-        <p class="text-4xl sm:text-5xl font-bold text-red-400">R$29/mês</p>
-        <p class="text-2xl sm:text-3xl">Renovação automática</p>
+      <div id="plano-trimestral" class="bg-white rounded-2xl shadow-lg p-8 text-center cursor-pointer">
+        <h3 class="text-2xl font-bold mb-4">Plano Trimestral</h3>
+        <p class="text-4xl font-bold mb-2 text-yellow-500">R$25/mês</p>
+        <p class="text-sm mb-6">Pagamento de R$75 a cada 3 meses</p>
       </div>
     </div>
+  </section>
 
-    <button id="btnContinuar" class="mt-12 w-full md:w-auto px-12 py-6 bg-green-500 hover:bg-green-600 rounded-xl font-bold text-2xl sm:text-3xl text-white">
-      Continuar
-    </button>
+  <!-- Modal -->
+  <div id="modal" class="hidden fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div class="bg-white text-black p-8 rounded-2xl max-w-md w-full text-center">
+      <h2 class="text-xl font-bold mb-4">⚠️ Tem certeza?</h2>
+      <p id="modalMensagem" class="mb-6"></p>
+      <div class="flex justify-center gap-4">
+        <button id="btnVoltarAnual" class="px-4 py-2 bg-green-500 text-white rounded-lg">Quero economizar, vou de Anual</button>
+        <button id="btnConfirmar" class="px-4 py-2 bg-gray-400 text-black rounded-lg">Manter</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Prova social -->
+  <section class="py-16 px-6 max-w-5xl mx-auto">
+    <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">⭐ Clientes satisfeitos</h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center">
+        <img src="https://i.pravatar.cc/100?img=12" class="rounded-full mb-4">
+        <p class="italic">“Funciona muito bem! Assisti meu time ao vivo sem travar.”</p>
+        <span class="mt-2 font-bold">Carlos, RJ</span>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center">
+        <img src="https://i.pravatar.cc/100?img=36" class="rounded-full mb-4">
+        <p class="italic">“Muito melhor que TV a cabo, e bem mais barato.”</p>
+        <span class="mt-2 font-bold">Mariana, SP</span>
+      </div>
+      <div class="bg-white shadow-lg rounded-2xl p-6 flex flex-col items-center">
+        <img src="https://i.pravatar.cc/100?img=52" class="rounded-full mb-4">
+        <p class="italic">“Assinei e em 5 minutos já estava assistindo filmes em 4K.”</p>
+        <span class="mt-2 font-bold">João, MG</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Convite parceria -->
+  <section class="py-16 px-6 bg-blue-300 text-center">
+    <h2 class="text-3xl md:text-4xl font-bold mb-6">💼 Trabalhe conosco</h2>
+    <p class="text-lg mb-6">Seja nosso parceiro e ganhe dinheiro na internet revendendo UltraTV. Tenha suporte completo e lucre sem sair de casa.</p>
+    <a href="https://wa.me/5521987713642" target="_blank" class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-full text-lg shadow-lg">🚀 Quero ser parceiro</a>
   </section>
 
   <!-- Rodapé -->
-  <footer class="bg-black text-center py-10 px-6">
-    <p class="mb-6 text-xl">📌 UltraTV © 2025 - Todos os direitos reservados</p>
-    <p class="mb-6 text-xl">🔒 Pagamento 100% seguro via PIX</p>
-    <a href="https://wa.me/5521987713642" class="bg-green-600 hover:bg-green-700 text-white px-8 py-4 rounded-full font-bold text-2xl">
-      💬 Fale conosco no WhatsApp
-    </a>
+  <footer class="bg-black text-white py-8 text-center">
+    <p class="mb-4">UltraTV © 2025 - Todos os direitos reservados.</p>
+    <p class="mb-4">Sem fidelidade, sem consulta SPC. Só pagar e usar.</p>
+    <a href="https://wa.me/5521987713642" target="_blank" class="bg-green-600 hover:bg-green-700 px-6 py-3 rounded-full">📲 Falar no WhatsApp</a>
   </footer>
 
-  <!-- Script (mesmo que antes, só cortei p simplificar) -->
+  <!-- Popup assinantes -->
+  <div id="popup" class="popup">
+    <img src="https://i.pravatar.cc/100?img=64">
+    <span><b>Rafael</b> acabou de assinar o plano anual 🎉</span>
+  </div>
+
   <script>
-    let planoSelecionado = "anual";
+    const video = document.getElementById('bgVideo');
+    const toggleSound = document.getElementById('toggleSound');
+    toggleSound.addEventListener('click', () => {
+      if(video.muted){ video.muted=false; toggleSound.textContent="🔇 Desativar Som"; }
+      else { video.muted=true; toggleSound.textContent="🔊 Ativar Som"; }
+    });
+
+    function showPopup() {
+      const popup = document.getElementById('popup');
+      popup.style.display="flex";
+      setTimeout(()=>{ popup.style.display="none"; },5000);
+    }
+    setInterval(showPopup,30000);
+
+    const btnVoltarAnual = document.getElementById("btnVoltarAnual");
+    const btnConfirmar = document.getElementById("btnConfirmar");
+    const modal = document.getElementById("modal");
+    const modalMensagem = document.getElementById("modalMensagem");
+    let planoSelecionado="anual", planoClicado="";
+
     const planos = {
       anual: document.getElementById("plano-anual"),
       trimestral: document.getElementById("plano-trimestral"),
-      mensal: document.getElementById("plano-mensal"),
+      mensal: document.getElementById("plano-mensal")
     };
-    function selecionarPlano(plano) {
-      planoSelecionado = plano;
-      for (const key in planos) {
-        planos[key].classList.remove("border-4", "border-green-500");
-        planos[key].classList.add("border-2", "border-gray-700");
+
+    function selecionarPlano(plano){
+      planoSelecionado=plano;
+      planoClicado=plano;
+      for(const key in planos){
+        planos[key].classList.remove("border-4","border-green-500");
+        planos[key].classList.add("border-2","border-gray-700");
       }
-      planos[plano].classList.add("border-4", "border-green-500");
+      planos[plano].classList.add("border-4","border-green-500");
+
+      if(plano!=="anual") abrirModal(plano);
+      else window.open("https://wa.me/5521987713642?text="+encodeURIComponent("Olá, quero assinar o plano Anual UltraTV"),"_blank");
     }
-    planos.anual.addEventListener("click", () => selecionarPlano("anual"));
-    planos.trimestral.addEventListener("click", () => selecionarPlano("trimestral"));
-    planos.mensal.addEventListener("click", () => selecionarPlano("mensal"));
-    document.getElementById("btnContinuar").addEventListener("click", () => {
-      alert("Plano selecionado: " + planoSelecionado.toUpperCase());
+
+    function abrirModal(plano){
+      if(plano==="trimestral"){
+        modalMensagem.innerHTML="No Anual você pagaria <b>R$20/mês</b>, economizando <b>R$60 por ano</b> em comparação ao Trimestral.";
+        btnConfirmar.textContent="Manter Trimestral";
+      }else{
+        modalMensagem.innerHTML="No Anual você pagaria <b>R$20/mês</b>, economizando <b>R$108 por ano</b> em comparação ao Mensal.";
+        btnConfirmar.textContent="Manter Mensal";
+      }
+      modal.classList.remove("hidden");
+    }
+
+    btnVoltarAnual.addEventListener("click",()=>{ selecionarPlano("anual"); modal.classList.add("hidden"); });
+    btnConfirmar.addEventListener("click",()=>{ 
+      window.open("https://wa.me/5521987713642?text="+encodeURIComponent(`Olá, quero assinar o plano ${planoClicado.charAt(0).toUpperCase()+planoClicado.slice(1)} UltraTV`),"_blank");
+      modal.classList.add("hidden");
     });
+
+    planos.anual.addEventListener("click",()=>selecionarPlano("anual"));
+    planos.trimestral.addEventListener("click",()=>selecionarPlano("trimestral"));
+    planos.mensal.addEventListener("click",()=>selecionarPlano("mensal"));
   </script>
+
 </body>
 </html>
 
